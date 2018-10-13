@@ -13,7 +13,7 @@ public:
 
         fclose(f);*/
 
-        return false;
+        return true;
     }
 
     bool verificaUsuario(){

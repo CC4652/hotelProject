@@ -30,7 +30,8 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-    gerenciaInfo.h
+    gerenciaInfo.h \
+    les.h
 
 FORMS += \
         mainwindow.ui

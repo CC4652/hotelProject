@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "gerenciaInfo.h"
+#include "les.h"
+#include <string>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -22,6 +24,25 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnLogin_clicked()
 {
+    LES* l = new LES();
+
+
+
+    int i = 0;
+
+    for (i = 0; i < 30; i++){
+        ui->txtLESQ->setText(QVariant(l->imprimeInt(i)).toString());
+        i++;
+    }
+
+    if(l->imprimeDisp() == true){
+        ui->txtLESD->setText("Disponível");
+    }
+    else{
+        ui->txtLESD->setText("Ocupado");
+    }
+
+
     gerenciaInfo v;
     if(v.verificaUsuario()){
           ui->stackedWidget->setCurrentIndex(2);
