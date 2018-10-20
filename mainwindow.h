@@ -22,7 +22,11 @@ private slots:
 
     void on_commandLinkButton_clicked();
 
-    void on_btnLogin_2_clicked();
+    void on_btnAdd_clicked();
+
+    void on_btnSalvarFunc_clicked();
+
+    void on_btnSalvarSenha_clicked();
 
 private:
     Ui::MainWindow *ui;
