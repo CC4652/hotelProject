@@ -34,14 +34,14 @@ public:
     LDE(): primeiro(nullptr), total(0){
     }
 
-    bool insere(char nome[50], int idade, int cpf, char email[50], char contato[50], int duracao, int quarto, bool ativo) {
+    bool insere(string nome, int idade, int cpf, string email, string contato, int duracao, int quarto, bool ativo) {
         No *novo = new No();
 
-        strcpy(novo->c.nome, nome);
+        novo->c.nome = nome;
         novo->c.idade = idade;
         novo->c.cpf = cpf;
-        strcpy(novo->c.email, email);
-        strcpy(novo->c.contato, contato);
+        novo->c.email = email;
+        novo->c.contato = contato;
         novo->c.duracao = duracao;
         novo->c.quarto = quarto;
         novo->c.ativo = ativo;
@@ -65,6 +65,21 @@ public:
 
          novo->c.prox = ptrAtual;
          total++;
+/*
+         cout << novo->c.nome << endl;
+         cout << novo->c.idade << endl;
+         cout << novo->c.cpf << endl;
+         cout << novo->c.email << endl;
+         cout << novo->c.contato << endl;
+         cout << novo->c.duracao << endl;
+         cout << novo->c.quarto << endl;
+         cout << novo->c.ativo << endl;*/
+
+         cout << ptrAtual << endl;
+         cout << ptrAnterior << endl;
+         cout << primeiro << endl;
+
+         return true;
     }
   
       /*
