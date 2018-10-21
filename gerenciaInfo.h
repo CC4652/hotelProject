@@ -104,6 +104,7 @@ public:
       */
     }
 
+
     void salvaSenha(QString senha){
         QFile file("senha.txt");
         QString line;

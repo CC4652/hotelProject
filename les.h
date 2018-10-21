@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 
@@ -16,7 +17,7 @@ class LES {
 
     Quarto q[MAX];
 
-public:
+public:    
     LES(){
         //cout << "Na LES: ";
         for(int i= 0; i < MAX; i ++){

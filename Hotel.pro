@@ -32,7 +32,8 @@ HEADERS += \
         mainwindow.h \
     gerenciaInfo.h \
     les.h \
-    ldde.h
+    lde.h \
+    no.h
 
 FORMS += \
         mainwindow.ui
