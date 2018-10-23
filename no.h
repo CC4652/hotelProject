@@ -18,10 +18,16 @@ public:
         int duracao;
         int quarto;
         bool ativo;
-        No *prox;
+
     }Cliente;
 
     Cliente c;
+
+    No *prox;
+
+    No() {
+        this->prox = nullptr;
+      }
 
 
 };

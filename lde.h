@@ -28,14 +28,14 @@ public:
 class LDE {
 private:
     No* primeiro;
-    int total;
+    int total = 0;
 
 public:
     LDE(): primeiro(nullptr), total(0){
     }
 
-    bool insere(string nome, int idade, int cpf, string email, string contato, int duracao, int quarto, bool ativo) {
-        No *novo = new No();
+    void insere(No** lista, string nome, int idade, int cpf, string email, string contato, int duracao, int quarto, bool ativo){
+        No* novo = (No *)malloc(sizeof(No));
 
         novo->c.nome = nome;
         novo->c.idade = idade;
@@ -46,25 +46,89 @@ public:
         novo->c.quarto = quarto;
         novo->c.ativo = ativo;
 
-        novo->c.prox = nullptr;
+        if(*lista == NULL){
+            novo->prox = NULL;
+          }else{
+            novo->prox = *lista;
+            primeiro = novo;
+          }
 
-        No *ptrAnterior = nullptr;
+          //*lista = novo;
+/*
+        cout << lista << endl;
+        cout << novo->c.prox << endl;
+        cout << novo->c.ant << endl;*/
+
+    }
+
+
+
+
+/*
+    bool insere(string nome, int idade, int cpf, string email, string contato, int duracao, int quarto, bool ativo) {
+        No *novo = new No();
         No *ptrAtual = primeiro;
+        No *ptrAnterior = nullptr;
+
+        cout << ptrAtual << endl;
+        cout << primeiro << endl;
+
+        if(!novo)
+            return false;
+
+        novo->c.nome = nome;
+        novo->c.idade = idade;
+        novo->c.cpf = cpf;
+        novo->c.email = email;
+        novo->c.contato = contato;
+        novo->c.duracao = duracao;
+        novo->c.quarto = quarto;
+        novo->c.ativo = ativo;
+
+        while(ptrAtual){
+            ptrAnterior = ptrAtual;
+            ptrAtual = ptrAtual->prox;
+            cout << "entrei no while" << endl;
+        }
+
+        if(ptrAnterior){
+            ptrAnterior->prox = novo;
+            cout << "entrei no if" << endl;
+        }else{
+            primeiro = novo;
+            cout << "entrei no else" << endl;
+        }
+
+        novo->prox = ptrAtual;
+        total++;
+
+        cout << ptrAtual << endl;
+        cout << ptrAnterior << endl;
+        cout << primeiro << endl;
+
+        return true;
+
+    }
+        //novo->prox = nullptr;
+
+        //cout << primeiro << endl;*/
+
+        /*
 
         while(ptrAtual != nullptr){
               ptrAnterior = ptrAtual;
-              ptrAtual = ptrAtual->c.prox;
+              ptrAtual = ptrAtual->prox;
         }
 
         if(ptrAnterior != nullptr)
-              ptrAnterior->c.prox = novo;
+              ptrAnterior->prox = novo;
 
          else{
               primeiro = novo;
          }
 
-         novo->c.prox = ptrAtual;
-         total++;
+         novo->prox = ptrAtual;
+         total++;*/
 /*
          cout << novo->c.nome << endl;
          cout << novo->c.idade << endl;
@@ -73,16 +137,10 @@ public:
          cout << novo->c.contato << endl;
          cout << novo->c.duracao << endl;
          cout << novo->c.quarto << endl;
-         cout << novo->c.ativo << endl;*/
-
-         cout << ptrAtual << endl;
-         cout << ptrAnterior << endl;
-         cout << primeiro << endl;
-
-         return true;
+         cout << novo->c.ativo << endl;
     }
   
-      /*
+
       if (!novo)
         return false;
   
