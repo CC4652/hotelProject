@@ -23,7 +23,7 @@ public:
         for(int i= 0; i < MAX; i ++){
             //cout << i << " ";
             q[i].num = i + 1;
-            q[i].disp = false;
+            q[i].disp = true;
         }
     }
 

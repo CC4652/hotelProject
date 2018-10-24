@@ -3,25 +3,31 @@
 
 #include <iostream>
 #include <stdlib.h>
-//#include <string>
+#include <string>
 
 using namespace std;
 
 class No{
 public:
     typedef struct Cliente{
-        char nome[50];
+        string nome;
         int idade;
         int cpf;
-        char email[50];
-        char contato[50];
+        string email;
+        string contato;
         int duracao;
         int quarto;
         bool ativo;
-        No *prox;
+
     }Cliente;
 
     Cliente c;
+
+    No *prox;
+
+    No() {
+        this->prox = nullptr;
+      }
 
 
 };

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "gerenciaInfo.h"
 #include "les.h"
+#include "lde.h"
 #include "gerenciaInfo.h"
 #include <string>
 #include <iostream>
@@ -163,4 +164,14 @@ void MainWindow::on_btnSalvarSenha_clicked()
     else{
         ui->lblVerificaSenhas->setText("As senhas divergem. Digite novamente");
     }
+}
+
+void MainWindow::on_btnSalvaReserva_clicked()
+{
+    LDE l;
+    No** n;
+
+    l.insere(n,ui->txtNomeCliente->text().toStdString(),ui->txtIdadeCliente->text().toInt(),ui->txtCPFCliente->text().toInt(),ui->txtEmailCliente->text().toStdString(), ui->txtContatoCliente->text().toStdString(),ui->txtDuracao->text().toInt(),ui->comboBoxQuartos->itemText(ui->comboBoxQuartos->currentIndex()).toInt(),true);
+
+    ui->stackedWidget->setCurrentIndex(2);
 }
