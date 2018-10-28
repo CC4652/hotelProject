@@ -107,7 +107,7 @@ public:
 
     void salvaSenha(QString senha){
         QFile file("senha.txt");
-        QString line;
+       // QString line;
         if((file.open(QIODevice::ReadWrite | QIODevice::Text))){
             QTextStream in(&file);
             in << senha << endl;

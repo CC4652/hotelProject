@@ -10,6 +10,8 @@
 
 using namespace std;
 
+ LDE l;
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -168,10 +170,13 @@ void MainWindow::on_btnSalvarSenha_clicked()
 
 void MainWindow::on_btnSalvaReserva_clicked()
 {
-    LDE l;
-    No** n;
-
-    l.insere(n,ui->txtNomeCliente->text().toStdString(),ui->txtIdadeCliente->text().toInt(),ui->txtCPFCliente->text().toInt(),ui->txtEmailCliente->text().toStdString(), ui->txtContatoCliente->text().toStdString(),ui->txtDuracao->text().toInt(),ui->comboBoxQuartos->itemText(ui->comboBoxQuartos->currentIndex()).toInt(),true);
-
+    l.insere(ui->txtNomeCliente->text().toStdString(),ui->txtIdadeCliente->text().toInt(),ui->txtCPFCliente->text().toInt(),ui->txtEmailCliente->text().toStdString(), ui->txtContatoCliente->text().toStdString(),ui->txtDuracao->text().toInt(),ui->comboBoxQuartos->itemText(ui->comboBoxQuartos->currentIndex()).toInt(),true);
+  /*  l.insere("Victor", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);
+    l.insere("Guilherme", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);
+    l.insere("Lucas", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);
+    l.insere("Mais", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);*/
     ui->stackedWidget->setCurrentIndex(2);
+
+
+    l.imprime();
 }
