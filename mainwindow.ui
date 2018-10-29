@@ -30,7 +30,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="btnLogin">
@@ -117,9 +117,9 @@
      <widget class="QLabel" name="txtErro">
       <property name="geometry">
        <rect>
-        <x>250</x>
+        <x>243</x>
         <y>345</y>
-        <width>172</width>
+        <width>191</width>
         <height>21</height>
        </rect>
       </property>

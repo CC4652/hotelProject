@@ -52,13 +52,14 @@ public:
                     QString senha = stream.readLine();
                     QString cargo = stream.readLine();
                     QString registro = stream.readLine();
+                    cout << nome.toStdString() << endl;
                     if(loginUser == login && senhaUser == senha){
                         return true;
                     }
                 }
             }
           file.close();
-        return  false;
+          return  false;
     }
 
     void salvasenha(){
@@ -73,7 +74,6 @@ public:
         fout << senha.toStdString() << endl;
         fout << cargo.toStdString() << endl;
         fout << registro.toStdString() << endl;
-        fout << "\n";
 
         ifstream fin("funcionarios.txt");
             char temp;

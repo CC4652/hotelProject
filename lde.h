@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 #include "gerenciaInfo.h"
+#include "les.h"
+#define MAX 30
 
 class No {
 private:
@@ -42,6 +44,8 @@ private:
 
 public:
     No* primeiro;
+    LES g;
+
     LDE(): primeiro(nullptr), total(0){
     }
 
@@ -65,6 +69,8 @@ public:
           primeiro = novo;
 
         novo->prox = atual;
+
+        g.getQuarto(quarto);
 
         return true;
       }

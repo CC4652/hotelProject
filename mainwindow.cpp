@@ -15,6 +15,7 @@ using namespace std;
 
 LDE l;
 gerenciaInfo g;
+LES* h = new LES();
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -27,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->btnAdd->setEnabled(false);
 
     l.carregaLDE();
+    h->carregaLES();
     l.imprime();
 
     if(!(g.verificaSenha()))
@@ -42,7 +44,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnLogin_clicked()
 {
-    if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
+   if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
         ui->txtErro->setText("Login e/ou senha incorretos");
         return;
     }
@@ -108,22 +110,24 @@ void MainWindow::on_commandLinkButton_clicked()
 
 void MainWindow::on_btnAdd_clicked()
 {
-    LES* l = new LES();
     ui->stackedWidget->setCurrentIndex(3);
 
-    if(ui->comboBoxQuartos->count() == 0){
-        for (int i = 0; i < 30; i++){
-            if(l->imprimeDisp(i) == true)
-                ui->comboBoxQuartos->addItem(QVariant(l->imprimeInt(i)).toString());
-        }
+    ui->comboBoxQuartos->clear();
+
+    h->carregaLES();
+
+    for (int i = 0; i < 30; i++){
+        if(h->imprimeDisp(i) == true)
+            ui->comboBoxQuartos->addItem(QVariant(h->imprimeInt(i)).toString());
+    }
 
     if(ui->comboBoxQuartos->count() == 0){
         ui->comboBoxQuartos->setEnabled(false);
         ui->txtDisp->setText("Não há quartos disponíveis");
         ui->btnSalvaReserva->setEnabled(false);
     }
-    }
 }
+
 
 void MainWindow::on_btnSalvarFunc_clicked()
 {
