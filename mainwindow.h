@@ -28,8 +28,6 @@ private slots:
 
     void on_btnSalvarSenha_clicked();
 
-    void on_btnSalvaReserva_clicked();
-
 private:
     Ui::MainWindow *ui;
 };

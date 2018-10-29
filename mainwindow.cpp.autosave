@@ -115,6 +115,7 @@ void MainWindow::on_btnExit_clicked()
 
 void MainWindow::on_commandLinkButton_clicked()
 {
+    if()
     ui->stackedWidget->setCurrentIndex(1);
     ui->btnExit->setEnabled(true);
     if(ui->comboBoxCargos->count() == 0){

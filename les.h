@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 
-
 using namespace std;
 
 
@@ -17,13 +16,13 @@ class LES {
 
     Quarto q[MAX];
 
-public:    
+public:
     LES(){
         //cout << "Na LES: ";
         for(int i= 0; i < MAX; i ++){
             //cout << i << " ";
             q[i].num = i + 1;
-            q[i].disp = true;
+            q[i].disp = false;
         }
     }
 
