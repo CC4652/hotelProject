@@ -255,28 +255,21 @@
        </item>
       </layout>
      </widget>
-    </widget>
-    <widget class="QWidget" name="page_2">
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="lblVerifica">
       <property name="geometry">
        <rect>
-        <x>270</x>
-        <y>160</y>
-        <width>331</width>
-        <height>81</height>
+        <x>210</x>
+        <y>230</y>
+        <width>251</width>
+        <height>20</height>
        </rect>
       </property>
-      <property name="font">
-       <font>
-        <pointsize>15</pointsize>
-        <weight>50</weight>
-        <bold>false</bold>
-       </font>
-      </property>
       <property name="text">
-       <string>Escolha alguma das opções ao lado</string>
+       <string/>
       </property>
      </widget>
+    </widget>
+    <widget class="QWidget" name="page_2">
      <widget class="QLabel" name="label_3">
       <property name="geometry">
        <rect>
@@ -314,6 +307,60 @@
       </property>
       <property name="text">
        <string>Sair</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnClientes">
+      <property name="geometry">
+       <rect>
+        <x>570</x>
+        <y>300</y>
+        <width>59</width>
+        <height>59</height>
+       </rect>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">border-color: rgb(46, 52, 54);</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="icon">
+       <iconset resource="arquivorecurso.qrc">
+        <normaloff>:/img/icons/icons8-usuário-100.png</normaloff>:/img/icons/icons8-usuário-100.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>30</width>
+        <height>30</height>
+       </size>
+      </property>
+      <property name="flat">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>320</y>
+        <width>331</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gerenciar todos os clientes do hotel no momento</string>
       </property>
      </widget>
     </widget>
@@ -525,6 +572,54 @@
       <property name="text">
        <string/>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_6">
+     <widget class="QTableWidget" name="tableWidgetClientes">
+      <property name="geometry">
+       <rect>
+        <x>60</x>
+        <y>40</y>
+        <width>421</width>
+        <height>192</height>
+       </rect>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::NoPen</enum>
+      </property>
+      <property name="columnCount">
+       <number>3</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>23</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Nome</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Quarto</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Duração</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>

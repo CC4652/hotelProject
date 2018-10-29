@@ -7,33 +7,32 @@
 #include <string>
 #include <iostream>
 #include <QMessageBox>
+#include <QDebug>
+#include <QInputDialog>
+#include <QDir>
 
 using namespace std;
 
- LDE l;
+LDE l;
+gerenciaInfo g;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
-
-    //ui->stackedWidget->setCurrentIndex(0);
     ui->setupUi(this);
 
     ui->btnExit->setEnabled(false);
     ui->btnSettings->setEnabled(false);
     ui->btnAdd->setEnabled(false);
 
-    gerenciaInfo g;
+    l.carregaLDE();
+    l.imprime();
 
     if(!(g.verificaSenha()))
         ui->stackedWidget->setCurrentIndex(4);
     else
         ui->stackedWidget->setCurrentIndex(0);
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -41,54 +40,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_btnLogin_clicked()
 {
-
-
-    //cout << "\n\n\n";
-    //cout << "Na tela: ";
-
-    /*if(ui->comboQuartos->size() == 0){
-
-    }*/
-
-
-    /*if(ui->comboQuartos->count() == 0){
-       ui->comboQuartos->setEnabled(false);
-       ui->txtDisp->setText("Não há quartos disponíveis");
-    }*/
-
-
-   /* if(l->imprimeDisp() == true){
-        //ui->txtLESD->setText("Disponível");
+    if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
+        ui->txtErro->setText("Login e/ou senha incorretos");
+        return;
     }
-    else{
-        //ui->txtLESD->setText("Ocupado");
-    }*/
-
-
-    gerenciaInfo v;
-    if(v.verificaUsuario()){
+    if(g.verificaUsuario(ui->txtUser->text(),ui->txtSenha->text())){
           ui->stackedWidget->setCurrentIndex(2);
           ui->btnExit->setEnabled(true);
           ui->btnSettings->setEnabled(true);
           ui->btnAdd->setEnabled(true);
           ui->txtBtnSair->setText("Sair");
-          gerenciaInfo g;
-          g.verificaSenha();
     }
     else{
-        ui->txtErro->setText("Login ou senha incorretos");
+        ui->txtErro->setText("Login e/ou senha incorretos");
     }
 }
 
 void MainWindow::on_btnExit_clicked()
 {
-
-
     if(ui->stackedWidget->currentIndex() == 3){
+        ui->stackedWidget->setCurrentIndex(2);
+        return;
+    }
+
+    if(ui->stackedWidget->currentIndex() == 5){
         ui->stackedWidget->setCurrentIndex(2);
         return;
     }
@@ -99,39 +76,38 @@ void MainWindow::on_btnExit_clicked()
     }
 
     ui->stackedWidget->setCurrentIndex(0);
-
-
-    /*
-    gerenciaInfo v;
-    if(v.verificaSenha()){
-        ui->stackedWidget->setCurrentIndex(0);
-        ui->btnExit->setEnabled(false);
-        ui->btnSettings->setEnabled(false);
-        ui->btnAdd->setEnabled(false);
-    }
-    else{
-        ui->txtErro->setText("Nenhuma senha de gerencia");
-    }*/
-
-
 }
 
 void MainWindow::on_commandLinkButton_clicked()
 {
-    //if()
-    ui->stackedWidget->setCurrentIndex(1);
-    ui->btnExit->setEnabled(true);
-    if(ui->comboBoxCargos->count() == 0){
-        ui->comboBoxCargos->addItem("Gerente");
-        ui->comboBoxCargos->addItem("Recepcionista");
+
+    QString text = QInputDialog::getText(this, tr("Senha"),
+                                             tr("Senha de gerencia: "), QLineEdit::Normal,
+                                             QDir::home().dirName());
+
+    //cout << g.senhaUser.toStdString() << endl;
+
+    g.verificaSenha();
+
+
+    if(text == g.senhaUser){
+        ui->stackedWidget->setCurrentIndex(1);
+        ui->btnExit->setEnabled(true);
+        if(ui->comboBoxCargos->count() == 0){
+            ui->comboBoxCargos->addItem("Gerente");
+            ui->comboBoxCargos->addItem("Recepcionista");
+        }
+    }
+    else{
+        QMessageBox msgBox;
+        msgBox.setText("Senha incorreta, tente novamente.");
+        msgBox.exec();
     }
 
 }
 
-
 void MainWindow::on_btnAdd_clicked()
 {
-
     LES* l = new LES();
     ui->stackedWidget->setCurrentIndex(3);
 
@@ -139,26 +115,28 @@ void MainWindow::on_btnAdd_clicked()
         for (int i = 0; i < 30; i++){
             if(l->imprimeDisp(i) == true)
                 ui->comboBoxQuartos->addItem(QVariant(l->imprimeInt(i)).toString());
-    }
+        }
 
     if(ui->comboBoxQuartos->count() == 0){
         ui->comboBoxQuartos->setEnabled(false);
         ui->txtDisp->setText("Não há quartos disponíveis");
         ui->btnSalvaReserva->setEnabled(false);
     }
-
     }
 }
 
 void MainWindow::on_btnSalvarFunc_clicked()
 {
-    gerenciaInfo g;
+    if(ui->txtNome->text() == "" || ui->txtUserFunc->text() == "" || ui->txtSenhaFunc->text() == "" || ui->comboBoxCargos->currentText() == "" || ui->txtRegistro->text() == ""){
+        ui->lblVerifica->setText("Por favor, preencha todos os campos.");
+        return;
+    }
     g.cadastraFunc(ui->txtNome->text(),ui->txtUserFunc->text(),ui->txtSenhaFunc->text(),ui->comboBoxCargos->currentText(),ui->txtRegistro->text());
+    ui->stackedWidget->setCurrentIndex(0);
 }
 
 void MainWindow::on_btnSalvarSenha_clicked()
 {
-    gerenciaInfo g;
     if(ui->txtSenhaGerencia->text() == ui->txtConfirmaSenha->text()){
         g.salvaSenha(ui->txtSenhaGerencia->text());
         ui->stackedWidget->setCurrentIndex(0);
@@ -171,12 +149,22 @@ void MainWindow::on_btnSalvarSenha_clicked()
 void MainWindow::on_btnSalvaReserva_clicked()
 {
     l.insere(ui->txtNomeCliente->text().toStdString(),ui->txtIdadeCliente->text().toInt(),ui->txtCPFCliente->text().toInt(),ui->txtEmailCliente->text().toStdString(), ui->txtContatoCliente->text().toStdString(),ui->txtDuracao->text().toInt(),ui->comboBoxQuartos->itemText(ui->comboBoxQuartos->currentIndex()).toInt(),true);
-  /*  l.insere("Victor", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);
-    l.insere("Guilherme", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);
-    l.insere("Lucas", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);
-    l.insere("Mais", 19,4854,"victormanoel119@gmai.com","Tal",8,30,true);*/
+
     ui->stackedWidget->setCurrentIndex(2);
 
+    l.salvaClientes();
+}
 
-    l.imprime();
+
+void MainWindow::on_btnClientes_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(5);
+
+    No *atual = l.primeiro;
+    while (atual) {
+      cout << atual->c.nome << endl;
+      ui->tableWidgetClientes->insertRow(ui->tableWidgetClientes->rowCount());
+      ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atual->c.nome)));
+      atual = atual->prox;
+     }
 }

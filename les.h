@@ -19,30 +19,19 @@ class LES {
 
 public:    
     LES(){
-        //cout << "Na LES: ";
         for(int i= 0; i < MAX; i ++){
-            //cout << i << " ";
             q[i].num = i + 1;
             q[i].disp = true;
         }
     }
 
     int imprimeInt(int i){
-       /* for(int i = 0; i < MAX; i ++){
-            cout << "Quartos: " << q[i].num << endl;
-            cout << "Disponibilidade: " << q[i].disp << endl;
-        }*/
         return q[i].num;
     }
 
     bool imprimeDisp(int i){
          return q[i].disp;
-         /*cout << q[i].num << endl;
-         cout << q[i].disp << endl;
-         cout << "\n" << endl;*/
     }
 };
-
-
 
 #endif // LES_H
