@@ -44,10 +44,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnLogin_clicked()
 {
-   if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
+   /*if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
         ui->txtErro->setText("Login e/ou senha incorretos");
         return;
-    }
+    }*/
     if(g.verificaUsuario(ui->txtUser->text(),ui->txtSenha->text())){
           ui->stackedWidget->setCurrentIndex(2);
           ui->btnExit->setEnabled(true);
@@ -164,11 +164,30 @@ void MainWindow::on_btnClientes_clicked()
 {
     ui->stackedWidget->setCurrentIndex(5);
 
+    //ui->tableWidgetClientes->clear();
+
+    ui->tableWidgetClientes->setRowCount(0);
+
+
     No *atual = l.primeiro;
     while (atual) {
       cout << atual->c.nome << endl;
-      ui->tableWidgetClientes->insertRow(ui->tableWidgetClientes->rowCount());
-      ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atual->c.nome)));
+      if(atual->c.ativo == true){
+          ui->tableWidgetClientes->insertRow(ui->tableWidgetClientes->rowCount());
+          ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atual->c.nome)));
+          ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,1,new QTableWidgetItem(QVariant(atual->c.quarto).toString()));
+          ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,2,new QTableWidgetItem(QVariant(atual->c.duracao).toString()));
+      }
       atual = atual->prox;
      }
+}
+
+void MainWindow::on_btnCheckout_clicked()
+{
+    ui->
+}
+
+void MainWindow::on_btnCheckout_clicked()
+{
+
 }

@@ -83,9 +83,18 @@ public:
             atual = atual->prox;
         }
 
-        QFile file("clientes.txt");
+        QFile file("clientes");
         if((file.open(QIODevice::Append | QIODevice::Text))){
             QTextStream in(&file);
+            in << QString::fromStdString(atual->c.nome) << endl;
+        }
+
+
+        QString cliente = QString::fromStdString(atual->c.nome);
+
+        QFile filee(cliente);
+        if((filee.open(QIODevice::ReadWrite | QIODevice::Text))){
+            QTextStream in(&filee);
             in << QString::fromStdString(atual->c.nome) << endl;
             in << atual->c.idade << endl;
             in << atual->c.cpf << endl;
@@ -95,6 +104,9 @@ public:
             in << atual->c.quarto << endl;
             in << atual->c.ativo << endl;
         }
+
+        file.close();
+        filee.close();
 
     }
 
@@ -108,21 +120,29 @@ public:
     }
 
     void carregaLDE(){
-        QString filename="clientes.txt";
+        QString filename="clientes";
             QFile file(filename);
             if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
                 QTextStream stream(&file);
                 while (!stream.atEnd()){
-                    QString nome = stream.readLine();
-                    QString idade = stream.readLine();
-                    QString cpf = stream.readLine();
-                    QString email = stream.readLine();
-                    QString contato = stream.readLine();
-                    QString duracao = stream.readLine();
-                    QString quarto = stream.readLine();
-                    QString ativo = stream.readLine();
-                    insere(nome.toStdString(),idade.toInt(),cpf.toInt(), email.toStdString(), contato.toStdString(), duracao.toInt(),quarto.toInt(), ativo.toInt());
-                }
+                    QString cliente = stream.readLine();
+                    QString filename=cliente;
+                        QFile filee(filename);
+                        if (filee.open(QIODevice::ReadOnly | QIODevice::Text)){
+                            QTextStream stream(&filee);
+                            while (!stream.atEnd()){
+                                QString nome = stream.readLine();
+                                QString idade = stream.readLine();
+                                QString cpf = stream.readLine();
+                                QString email = stream.readLine();
+                                QString contato = stream.readLine();
+                                QString duracao = stream.readLine();
+                                QString quarto = stream.readLine();
+                                QString ativo = stream.readLine();
+                                insere(nome.toStdString(),idade.toInt(),cpf.toInt(), email.toStdString(), contato.toStdString(), duracao.toInt(),quarto.toInt(), ativo.toInt());
+                            }
+                         }
+                 }
             }
           file.close();
        }

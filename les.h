@@ -66,10 +66,6 @@ public:
         }
 
         salvaQuartos();
-
-        for(int i= 0; i < MAX; i ++){
-                cout << "Quarto " << i << q[i].disp << endl;
-            }
         }
 
 
@@ -78,7 +74,6 @@ public:
     }
 
     bool imprimeDisp(int i){
-        cout << "Disponibilidade do quarto " << i + 1 << ":" << q[i].disp << endl;
         return q[i].disp;
     }
 };

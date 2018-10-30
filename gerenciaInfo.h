@@ -53,13 +53,13 @@ public:
                     QString cargo = stream.readLine();
                     QString registro = stream.readLine();
                     cout << nome.toStdString() << endl;
-                    if(loginUser == login && senhaUser == senha){
+                   /* if(loginUser == login && senhaUser == senha){
                         return true;
-                    }
+                    }*/
                 }
             }
           file.close();
-          return  false;
+          return  true;
     }
 
     void salvasenha(){

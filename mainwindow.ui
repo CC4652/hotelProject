@@ -30,7 +30,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="btnLogin">
@@ -578,9 +578,9 @@
      <widget class="QTableWidget" name="tableWidgetClientes">
       <property name="geometry">
        <rect>
-        <x>60</x>
-        <y>40</y>
-        <width>421</width>
+        <x>70</x>
+        <y>50</y>
+        <width>503</width>
         <height>192</height>
        </rect>
       </property>
@@ -588,7 +588,7 @@
        <enum>Qt::NoPen</enum>
       </property>
       <property name="columnCount">
-       <number>3</number>
+       <number>5</number>
       </property>
       <attribute name="horizontalHeaderCascadingSectionResizes">
        <bool>false</bool>
@@ -620,6 +620,29 @@
         <string>Duração</string>
        </property>
       </column>
+      <column>
+       <property name="text">
+        <string>Telefone</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Ativo</string>
+       </property>
+      </column>
+     </widget>
+     <widget class="QPushButton" name="btnCheckout">
+      <property name="geometry">
+       <rect>
+        <x>235</x>
+        <y>280</y>
+        <width>200</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Checkout</string>
+      </property>
      </widget>
     </widget>
    </widget>

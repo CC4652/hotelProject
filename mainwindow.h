@@ -33,6 +33,10 @@ private slots:
 
     void on_btnClientes_clicked();
 
+    void on_btnCheckout_clicked();
+
+    void on_btnCheckout_clicked();
+    
 private:
     Ui::MainWindow *ui;
 };
