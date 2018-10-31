@@ -30,7 +30,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>7</number>
+     <number>8</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="btnLogin">
@@ -991,6 +991,59 @@
       <column>
        <property name="text">
         <string>E-mail</string>
+       </property>
+      </column>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_9">
+     <widget class="QTableWidget" name="tableWidgetFinancas">
+      <property name="geometry">
+       <rect>
+        <x>110</x>
+        <y>20</y>
+        <width>421</width>
+        <height>281</height>
+       </rect>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::NoPen</enum>
+      </property>
+      <property name="columnCount">
+       <number>4</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>23</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Nome</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Duração</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Acomodação</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Valor</string>
        </property>
       </column>
      </widget>

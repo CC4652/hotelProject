@@ -4,6 +4,7 @@
 #include "les.h"
 #include "lde.h"
 #include "gerenciaInfo.h"
+#include "fila.h"
 #include <string>
 #include <iostream>
 #include <QMessageBox>
@@ -17,6 +18,7 @@ using namespace std;
 LDE l;
 gerenciaInfo g;
 LES* h = new LES();
+FDE i;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -312,4 +314,44 @@ void MainWindow::on_btnCheckout_3_clicked()
         ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,9,new QTableWidgetItem(QString::fromStdString(atual->c.email)));
         atual = atual->prox;
      }
+}
+
+void MainWindow::on_btnCheckout_2_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(8);
+
+    No *atual = l.primeiro;
+
+    while(atual){
+        i.enfileira(atual->c.nome,atual->c.duracao,atual->c.tipo);
+        atual = atual->prox;
+    }
+
+    string tipo;
+
+    Ne *atuaal = i.primeiro;
+    {
+        while (i.desenfileira()){
+
+            if(atuaal->f.tipoAcomodacao == 1){
+                tipo = "Simples";
+            }
+            if(atuaal->f.tipoAcomodacao == 2){
+                tipo = "Intermediário";
+            }
+            if(atuaal->f.tipoAcomodacao == 3){
+                tipo = "Luxo";
+            }
+            if(atuaal->f.tipoAcomodacao == 4){
+                tipo = "Platinum";
+            }
+
+            ui->tableWidgetFinancas->insertRow(ui->tableWidgetFinancas->rowCount());
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atuaal->f.nome)));
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,3,new QTableWidgetItem(QVariant(atuaal->f.dias).toString()));
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,4,new QTableWidgetItem(QString::fromStdString(tipo)));
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,4,new QTableWidgetItem(QVariant(atuaal->f.valor).toString()));
+
+        }
+    }
 }

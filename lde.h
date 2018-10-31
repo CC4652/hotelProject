@@ -81,15 +81,19 @@ public:
 
     void salvaClientes(){
         No *atual = primeiro;
+
         while(atual->prox ){
             atual = atual->prox;
         }
 
+
+
         QFile file("clientes");
         if((file.open(QIODevice::Append | QIODevice::Text))){
             QTextStream in(&file);
-            in << QString::fromStdString(atual->c.nome) << endl;
-        }
+                in << QString::fromStdString(atual->c.nome) << endl;
+            }
+
 
         QString cliente = QString::fromStdString(atual->c.nome);
 
