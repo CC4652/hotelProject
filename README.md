@@ -118,6 +118,6 @@ Foram implementadas 3 estruturas sendo elas, *LES* (Lista Estática Sequencial),
 
 ## Autores
 
-Victor Lima
-Lucas Alves
-Guilherme Ferreira
+* Victor Lima
+* Lucas Alves
+* Guilherme Ferreira
