@@ -13,26 +13,30 @@ public:
     string nome;
     int idade;
     int cpf;
+    string endereco;
     string email;
     string contato;
     int duracao;
     int quarto;
     bool ativo;
+    int tipo;
   }Cliente;
 
   Cliente c;
 
   No *prox;
 
-  No(string nome, int idade, int cpf, string email, string contato, int duracao, int quarto, bool ativo) {
+  No(string nome, int idade, int cpf, string endereco, string email, string contato, int duracao, int quarto, bool ativo, int tipo) {
     this->c.nome = nome;
     this->c.idade = idade;
     this->c.cpf = cpf;
+    this->c.endereco = endereco;
     this->c.email = email;
     this->c.contato = contato;
     this->c.duracao = duracao;
     this->c.quarto = quarto;
     this->c.ativo = ativo;
+    this->c.tipo = tipo;
     this->prox = NULL;
   }
 };
@@ -49,11 +53,11 @@ public:
     LDE(): primeiro(nullptr), total(0){
     }
 
-    bool insere(string nome, int idade, int cpf, string email, string contato, int duracao, int quarto, bool ativo) {
+    bool insere(string nome, int idade, int cpf, string endereco, string email, string contato, int duracao, int quarto, bool ativo,int tipo) {
         No *atual = primeiro;
         No *anterior = NULL;
 
-        No *novo = new No(nome, idade, cpf, email, contato, duracao, quarto, ativo);
+        No *novo = new No(nome, idade, cpf, endereco, email, contato, duracao, quarto, ativo,tipo);
 
         if (!novo)
           return false;
@@ -78,8 +82,6 @@ public:
     void salvaClientes(){
         No *atual = primeiro;
         while(atual->prox ){
-
-
             atual = atual->prox;
         }
 
@@ -89,7 +91,6 @@ public:
             in << QString::fromStdString(atual->c.nome) << endl;
         }
 
-
         QString cliente = QString::fromStdString(atual->c.nome);
 
         QFile filee(cliente);
@@ -98,16 +99,16 @@ public:
             in << QString::fromStdString(atual->c.nome) << endl;
             in << atual->c.idade << endl;
             in << atual->c.cpf << endl;
+            in << QString::fromStdString(atual->c.endereco) << endl;
             in << QString::fromStdString(atual->c.email) << endl;
             in << QString::fromStdString(atual->c.contato) << endl;
             in << atual->c.duracao << endl;
             in << atual->c.quarto << endl;
             in << atual->c.ativo << endl;
+            in << atual->c.tipo << endl;
         }
-
         file.close();
         filee.close();
-
     }
 
     void imprime() {
@@ -134,18 +135,36 @@ public:
                                 QString nome = stream.readLine();
                                 QString idade = stream.readLine();
                                 QString cpf = stream.readLine();
+                                QString endereco = stream.readLine();
                                 QString email = stream.readLine();
                                 QString contato = stream.readLine();
                                 QString duracao = stream.readLine();
                                 QString quarto = stream.readLine();
                                 QString ativo = stream.readLine();
-                                insere(nome.toStdString(),idade.toInt(),cpf.toInt(), email.toStdString(), contato.toStdString(), duracao.toInt(),quarto.toInt(), ativo.toInt());
+                                QString tipo = stream.readLine();
+                                insere(nome.toStdString(),idade.toInt(),cpf.toInt(), endereco.toStdString(),email.toStdString(), contato.toStdString(), duracao.toInt(),quarto.toInt(), ativo.toInt(), tipo.toInt());
                             }
                          }
                  }
             }
           file.close();
        }
+
+    void alteraCliente(string nome){
+        int quarto;
+        No *atual = primeiro;
+        while (atual) {
+            if(nome == atual->c.nome){
+                atual->c.ativo = false;
+                quarto = atual->c.quarto;
+            }
+          atual = atual->prox;
+         }
+
+        g.setQuartos(quarto);
+
+        salvaClientes();
+    }
 };
 
 

@@ -8,9 +8,7 @@
 #include <fstream>
 #include <QMessageBox>
 
-
 using namespace std;
-
 
 class LES {
   private:
@@ -67,6 +65,15 @@ public:
 
         salvaQuartos();
         }
+
+    void setQuartos(int quarto){
+        for(int i= 0; i < MAX; i ++){
+            if(quarto == q[i].num){
+                q[i].disp = true;
+            }
+        }
+        salvaQuartos();
+    }
 
 
     int imprimeInt(int i){

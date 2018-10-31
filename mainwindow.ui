@@ -20,7 +20,7 @@
    <widget class="QStackedWidget" name="stackedWidget">
     <property name="geometry">
      <rect>
-      <x>80</x>
+      <x>90</x>
       <y>-10</y>
       <width>670</width>
       <height>411</height>
@@ -30,7 +30,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>5</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="btnLogin">
@@ -49,7 +49,7 @@
      <widget class="QCommandLinkButton" name="commandLinkButton">
       <property name="geometry">
        <rect>
-        <x>470</x>
+        <x>460</x>
         <y>340</y>
         <width>191</width>
         <height>31</height>
@@ -68,17 +68,20 @@
      <widget class="QLineEdit" name="txtSenha">
       <property name="geometry">
        <rect>
-        <x>175</x>
+        <x>190</x>
         <y>230</y>
         <width>320</width>
         <height>25</height>
        </rect>
       </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
      </widget>
      <widget class="QLineEdit" name="txtUser">
       <property name="geometry">
        <rect>
-        <x>175</x>
+        <x>190</x>
         <y>197</y>
         <width>320</width>
         <height>25</height>
@@ -125,6 +128,32 @@
       </property>
       <property name="text">
        <string/>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_23">
+      <property name="geometry">
+       <rect>
+        <x>125</x>
+        <y>200</y>
+        <width>63</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Usuário:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_24">
+      <property name="geometry">
+       <rect>
+        <x>135</x>
+        <y>230</y>
+        <width>51</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Senha:</string>
       </property>
      </widget>
     </widget>
@@ -175,6 +204,9 @@
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="echoMode">
+          <enum>QLineEdit::Password</enum>
          </property>
         </widget>
        </item>
@@ -293,7 +325,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>Configurações</string>
+       <string>Avançado</string>
       </property>
      </widget>
      <widget class="QLabel" name="txtBtnSair">
@@ -381,10 +413,10 @@
      <widget class="QWidget" name="gridLayoutWidget">
       <property name="geometry">
        <rect>
-        <x>50</x>
-        <y>100</y>
-        <width>571</width>
-        <height>132</height>
+        <x>20</x>
+        <y>40</y>
+        <width>581</width>
+        <height>141</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
@@ -401,7 +433,7 @@
        <item row="1" column="2">
         <widget class="QLabel" name="label_18">
          <property name="text">
-          <string>                       Contato:</string>
+          <string>                      Telefone:</string>
          </property>
         </widget>
        </item>
@@ -474,7 +506,7 @@
       <property name="geometry">
        <rect>
         <x>250</x>
-        <y>270</y>
+        <y>280</y>
         <width>181</width>
         <height>21</height>
        </rect>
@@ -499,6 +531,168 @@
        <string>Voltar</string>
       </property>
      </widget>
+     <widget class="QRadioButton" name="radioButtonSimples">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>190</y>
+        <width>191</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Simples</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroupTipos</string>
+      </attribute>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonInter">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>190</y>
+        <width>221</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Intermediária</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroupTipos</string>
+      </attribute>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonLuxo">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>230</y>
+        <width>181</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Luxo</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroupTipos</string>
+      </attribute>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>15</x>
+        <y>190</y>
+        <width>151</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>  Tipo de acomodação:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="lblVerificaCliente">
+      <property name="geometry">
+       <rect>
+        <x>190</x>
+        <y>280</y>
+        <width>311</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="radioButtonLuxo_2">
+      <property name="geometry">
+       <rect>
+        <x>380</x>
+        <y>230</y>
+        <width>221</width>
+        <height>26</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Platinum</string>
+      </property>
+      <attribute name="buttonGroup">
+       <string notr="true">buttonGroupTipos</string>
+      </attribute>
+     </widget>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>250</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>R$ 150,00/diária</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_25">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>250</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>R$ 100,00/diária</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_26">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>210</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>R$ 60,00/diária</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_27">
+      <property name="geometry">
+       <rect>
+        <x>400</x>
+        <y>210</y>
+        <width>201</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>8</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>R$ 60,00/diária</string>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="page_5">
      <widget class="QPushButton" name="btnSalvarSenha">
@@ -518,17 +712,20 @@
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>100</y>
+        <y>120</y>
         <width>311</width>
         <height>28</height>
        </rect>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
       </property>
      </widget>
      <widget class="QLabel" name="label_2">
       <property name="geometry">
        <rect>
         <x>180</x>
-        <y>70</y>
+        <y>90</y>
         <width>121</width>
         <height>20</height>
        </rect>
@@ -559,11 +756,14 @@
         <height>28</height>
        </rect>
       </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
      </widget>
      <widget class="QLabel" name="lblVerificaSenhas">
       <property name="geometry">
        <rect>
-        <x>200</x>
+        <x>210</x>
         <y>240</y>
         <width>261</width>
         <height>20</height>
@@ -580,7 +780,7 @@
        <rect>
         <x>70</x>
         <y>50</y>
-        <width>503</width>
+        <width>521</width>
         <height>192</height>
        </rect>
       </property>
@@ -627,7 +827,7 @@
       </column>
       <column>
        <property name="text">
-        <string>Ativo</string>
+        <string>Acomodação</string>
        </property>
       </column>
      </widget>
@@ -642,6 +842,73 @@
       </property>
       <property name="text">
        <string>Checkout</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="txtTeste">
+      <property name="geometry">
+       <rect>
+        <x>100</x>
+        <y>340</y>
+        <width>481</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_7">
+     <widget class="QPushButton" name="btnCheckout_2">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>130</y>
+        <width>200</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Financeiro</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="btnCheckout_3">
+      <property name="geometry">
+       <rect>
+        <x>230</x>
+        <y>240</y>
+        <width>200</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gerenciar clientes</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_28">
+      <property name="geometry">
+       <rect>
+        <x>25</x>
+        <y>210</y>
+        <width>601</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Caso deseje visualizar todos os clientes que já passaram pelo hotel, clique no botão abaixo:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_29">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>100</y>
+        <width>331</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Caso deseje um relatório financeiro, clique abaixo:</string>
       </property>
      </widget>
     </widget>
@@ -683,7 +950,7 @@
        </property>
        <property name="icon">
         <iconset resource="arquivorecurso.qrc">
-         <normaloff>:/img/icons/icons8-serviços-100 (1).png</normaloff>:/img/icons/icons8-serviços-100 (1).png</iconset>
+         <normaloff>:/img/icons/icons8-mais-500.png</normaloff>:/img/icons/icons8-mais-500.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -726,4 +993,7 @@
   <include location="arquivorecurso.qrc"/>
  </resources>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroupTipos"/>
+ </buttongroups>
 </ui>

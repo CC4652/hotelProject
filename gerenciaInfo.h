@@ -32,7 +32,6 @@ public:
         return true;
     }
 
-
     void salvaSenha(QString senha){
         QFile file("senha.txt");
         if((file.open(QIODevice::ReadWrite | QIODevice::Text))){
@@ -62,10 +61,6 @@ public:
           return  true;
     }
 
-    void salvasenha(){
-
-    }
-
     void cadastraFunc(QString nome, QString user, QString senha, QString cargo, QString registro){
         ofstream fout("funcionarios.txt", ios::app);
 
@@ -80,12 +75,10 @@ public:
             QString buffer;
             while (fin.get(temp)) {
                 buffer.push_back(QChar(temp));
-
             }
 
             fin.close();
     }
-
 };
 
 #endif // VERIFICAUSER_H

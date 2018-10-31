@@ -8,8 +8,9 @@
 #include <iostream>
 #include <QMessageBox>
 #include <QDebug>
-#include <QInputDialog>
 #include <QDir>
+#include <QInputDialog>
+#include <QList>
 
 using namespace std;
 
@@ -62,6 +63,7 @@ void MainWindow::on_btnLogin_clicked()
 
 void MainWindow::on_btnExit_clicked()
 {
+    ui->txtTeste->setText("");
     if(ui->stackedWidget->currentIndex() == 3){
         ui->stackedWidget->setCurrentIndex(2);
         return;
@@ -78,33 +80,37 @@ void MainWindow::on_btnExit_clicked()
     }
 
     ui->stackedWidget->setCurrentIndex(0);
+
+    ui->txtUser->setText("");
+    ui->txtSenha->setText("");
 }
 
 void MainWindow::on_commandLinkButton_clicked()
 {
 
     QString text = QInputDialog::getText(this, tr("Senha"),
-                                             tr("Senha de gerencia: "), QLineEdit::Normal,
-                                             QDir::home().dirName());
+                                             tr("Senha de gerencia: "), QLineEdit::Password);
 
     //cout << g.senhaUser.toStdString() << endl;
 
     g.verificaSenha();
 
-
-    if(text == g.senhaUser){
-        ui->stackedWidget->setCurrentIndex(1);
-        ui->btnExit->setEnabled(true);
-        if(ui->comboBoxCargos->count() == 0){
-            ui->comboBoxCargos->addItem("Gerente");
-            ui->comboBoxCargos->addItem("Recepcionista");
+    if(text != ""){
+        if(text == g.senhaUser){
+            ui->stackedWidget->setCurrentIndex(1);
+            ui->btnExit->setEnabled(true);
+            if(ui->comboBoxCargos->count() == 0){
+                ui->comboBoxCargos->addItem("Gerente");
+                ui->comboBoxCargos->addItem("Recepcionista");
+            }
+        }
+        else{
+            QMessageBox msgBox;
+            msgBox.setText("Senha incorreta, tente novamente.");
+            msgBox.exec();
         }
     }
-    else{
-        QMessageBox msgBox;
-        msgBox.setText("Senha incorreta, tente novamente.");
-        msgBox.exec();
-    }
+
 
 }
 
@@ -137,26 +143,66 @@ void MainWindow::on_btnSalvarFunc_clicked()
     }
     g.cadastraFunc(ui->txtNome->text(),ui->txtUserFunc->text(),ui->txtSenhaFunc->text(),ui->comboBoxCargos->currentText(),ui->txtRegistro->text());
     ui->stackedWidget->setCurrentIndex(0);
+
+    ui->txtNome->setText("");
+    ui->txtSenhaFunc->setText("");
+    ui->txtRegistro->setText("");
+    ui->txtUserFunc->setText("");
 }
 
 void MainWindow::on_btnSalvarSenha_clicked()
 {
+    if(ui->txtSenhaGerencia->text() == "" || ui->txtConfirmaSenha->text() == ""){
+        ui->lblVerificaSenhas->setText("Digite ao menos um caracter de senha.");
+        return;
+    }
+
     if(ui->txtSenhaGerencia->text() == ui->txtConfirmaSenha->text()){
         g.salvaSenha(ui->txtSenhaGerencia->text());
         ui->stackedWidget->setCurrentIndex(0);
     }
     else{
-        ui->lblVerificaSenhas->setText("As senhas divergem. Digite novamente");
+        ui->lblVerificaSenhas->setText("As senhas divergem. Digite novamente.");
     }
 }
 
 void MainWindow::on_btnSalvaReserva_clicked()
 {
-    l.insere(ui->txtNomeCliente->text().toStdString(),ui->txtIdadeCliente->text().toInt(),ui->txtCPFCliente->text().toInt(),ui->txtEmailCliente->text().toStdString(), ui->txtContatoCliente->text().toStdString(),ui->txtDuracao->text().toInt(),ui->comboBoxQuartos->itemText(ui->comboBoxQuartos->currentIndex()).toInt(),true);
+    if(ui->txtNomeCliente->text() == "" || ui->txtCPFCliente->text() == "" || ui->txtContatoCliente->text() == "" || ui->txtEmailCliente->text() == "" || ui->txtEnderecoCliente->text() == "" || ui->txtIdadeCliente->text() == "" || ui->txtDuracao->text() == "" || ui->buttonGroupTipos->checkedButton() == NULL){
+        ui->lblVerificaCliente->setText("Por favor, preencha/selecione todos os campos.");
+        return;
+    }
+
+    int tipo;
+
+    if(ui->buttonGroupTipos->checkedButton()->text() == "Simples"){
+        tipo = 1;
+    }
+    if(ui->buttonGroupTipos->checkedButton()->text() == "Intermediária"){
+        tipo = 2;
+    }
+    if(ui->buttonGroupTipos->checkedButton()->text() == "Luxo"){
+        tipo = 3;
+    }
+    if(ui->buttonGroupTipos->checkedButton()->text() == "Platinum"){
+        tipo = 4;
+    }
+
+    l.insere(ui->txtNomeCliente->text().toStdString(),ui->txtIdadeCliente->text().toInt(),ui->txtCPFCliente->text().toInt(),ui->txtEnderecoCliente->text().toStdString(),ui->txtEmailCliente->text().toStdString(), ui->txtContatoCliente->text().toStdString(),ui->txtDuracao->text().toInt(),ui->comboBoxQuartos->itemText(ui->comboBoxQuartos->currentIndex()).toInt(),true, tipo);
 
     ui->stackedWidget->setCurrentIndex(2);
 
     l.salvaClientes();
+
+    ui->txtNomeCliente->setText("");
+    ui->txtIdadeCliente->setText("");
+    ui->txtCPFCliente->setText("");
+    ui->txtEmailCliente->setText("");
+    ui->txtEnderecoCliente->setText("");
+    ui->txtContatoCliente->setText("");
+    ui->txtDuracao->setText("");
+    ui->buttonGroupTipos->checkedButton()->setCheckable(false);
+
 }
 
 
@@ -168,15 +214,30 @@ void MainWindow::on_btnClientes_clicked()
 
     ui->tableWidgetClientes->setRowCount(0);
 
+    string tipo;
 
     No *atual = l.primeiro;
     while (atual) {
-      cout << atual->c.nome << endl;
+        if(atual->c.tipo == 1){
+            tipo = "Simples";
+        }
+        if(atual->c.tipo == 2){
+            tipo = "Intermediário";
+        }
+        if(atual->c.tipo == 3){
+            tipo = "Luxo";
+        }
+        if(atual->c.tipo == 4){
+            tipo = "Platinum";
+        }
+
       if(atual->c.ativo == true){
           ui->tableWidgetClientes->insertRow(ui->tableWidgetClientes->rowCount());
           ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atual->c.nome)));
           ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,1,new QTableWidgetItem(QVariant(atual->c.quarto).toString()));
           ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,2,new QTableWidgetItem(QVariant(atual->c.duracao).toString()));
+          ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,3,new QTableWidgetItem(QString::fromStdString(atual->c.contato)));
+          ui->tableWidgetClientes->setItem(ui->tableWidgetClientes->rowCount()-1,4,new QTableWidgetItem(QString::fromStdString(tipo)));
       }
       atual = atual->prox;
      }
@@ -184,10 +245,21 @@ void MainWindow::on_btnClientes_clicked()
 
 void MainWindow::on_btnCheckout_clicked()
 {
-    ui->
+    if(!(ui->tableWidgetClientes->currentIndex().isValid())){
+        ui->txtTeste->setText("Selecione ao menos um cliente para que o checkout possa ser realizado.");
+    }
+    else{
+        l.alteraCliente((ui->tableWidgetClientes->item(ui->tableWidgetClientes->currentRow(),ui->tableWidgetClientes->currentColumn())->text()).toStdString());
+        ui->txtTeste->setText("Checkout realizado. Apenas clientes presentes no hotel sendo mostrados.");
+        on_btnClientes_clicked();
+
+    }
+
+    //cout << (ui->tableWidgetClientes->item(ui->tableWidgetClientes->currentRow(),ui->tableWidgetClientes->currentColumn())->text()).toStdString();
 }
 
-void MainWindow::on_btnCheckout_clicked()
-{
 
+void MainWindow::on_btnSettings_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(6);
 }

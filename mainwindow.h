@@ -34,9 +34,9 @@ private slots:
     void on_btnClientes_clicked();
 
     void on_btnCheckout_clicked();
-
-    void on_btnCheckout_clicked();
     
+    void on_btnSettings_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
