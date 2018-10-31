@@ -30,7 +30,7 @@
      <string notr="true">background-color: rgb(255, 255, 255);</string>
     </property>
     <property name="currentIndex">
-     <number>6</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QPushButton" name="btnLogin">
@@ -910,6 +910,89 @@
       <property name="text">
        <string>Caso deseje um relatório financeiro, clique abaixo:</string>
       </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="page_8">
+     <widget class="QTableWidget" name="tableWidgetTodos">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>631</width>
+        <height>351</height>
+       </rect>
+      </property>
+      <property name="gridStyle">
+       <enum>Qt::NoPen</enum>
+      </property>
+      <property name="columnCount">
+       <number>10</number>
+      </property>
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>23</number>
+      </attribute>
+      <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="horizontalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="verticalHeaderStretchLastSection">
+       <bool>false</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Nome</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Idade</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Quarto</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Duração</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Acomodação</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>No hotel?</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>CPF</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Telefone</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Endereço</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>E-mail</string>
+       </property>
+      </column>
      </widget>
     </widget>
    </widget>

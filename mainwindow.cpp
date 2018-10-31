@@ -79,6 +79,12 @@ void MainWindow::on_btnExit_clicked()
         ui->btnAdd->setEnabled(false);
     }
 
+    if(ui->stackedWidget->currentIndex() == 7){
+        ui->stackedWidget->setCurrentIndex(6);
+        return;
+    }
+
+
     ui->stackedWidget->setCurrentIndex(0);
 
     ui->txtUser->setText("");
@@ -262,4 +268,48 @@ void MainWindow::on_btnCheckout_clicked()
 void MainWindow::on_btnSettings_clicked()
 {
     ui->stackedWidget->setCurrentIndex(6);
+}
+
+void MainWindow::on_btnCheckout_3_clicked()
+{
+    ui->stackedWidget->setCurrentIndex(7);
+
+    ui->tableWidgetTodos->setRowCount(0);
+
+    string tipo,presente;
+
+    No *atual = l.primeiro;
+    while (atual) {
+        if(atual->c.tipo == 1){
+            tipo = "Simples";
+        }
+        if(atual->c.tipo == 2){
+            tipo = "Intermediário";
+        }
+        if(atual->c.tipo == 3){
+            tipo = "Luxo";
+        }
+        if(atual->c.tipo == 4){
+            tipo = "Platinum";
+        }
+
+        if(atual->c.ativo == true)
+            presente = "Sim";
+        if(atual->c.ativo == false)
+            presente = "Nao";
+
+
+        ui->tableWidgetTodos->insertRow(ui->tableWidgetTodos->rowCount());
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atual->c.nome)));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,1,new QTableWidgetItem(QVariant(atual->c.idade).toString()));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,2,new QTableWidgetItem(QVariant(atual->c.quarto).toString()));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,3,new QTableWidgetItem(QVariant(atual->c.duracao).toString()));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,4,new QTableWidgetItem(QString::fromStdString(tipo)));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,5,new QTableWidgetItem(QString::fromStdString(presente)));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,6,new QTableWidgetItem(QVariant(atual->c.cpf).toString()));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,7,new QTableWidgetItem(QString::fromStdString(atual->c.contato)));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,8,new QTableWidgetItem(QString::fromStdString(atual->c.endereco)));
+        ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,9,new QTableWidgetItem(QString::fromStdString(atual->c.email)));
+        atual = atual->prox;
+     }
 }

@@ -37,6 +37,8 @@ private slots:
     
     void on_btnSettings_clicked();
 
+    void on_btnCheckout_3_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
