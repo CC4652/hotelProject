@@ -112,12 +112,13 @@ Foram implementadas 3 estruturas sendo elas, *LES* (Lista Estática Sequencial),
 
 * FDE - foi utilizada para realizar a fila de faturamento dos hóspedes.
 
-## Licensa
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
 ## Autores
 
 * Victor Lima
 * Lucas Alves
 * Guilherme Ferreira
+
+## Licensa
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
