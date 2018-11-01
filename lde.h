@@ -6,6 +6,8 @@
 #include "les.h"
 #define MAX 30
 
+// LDE, responsável pelo armazenamento de informações do usuário, tal como conexão com disponibilidade dos quartos
+
 class No {
 private:
 public:
@@ -44,13 +46,13 @@ public:
 class LDE {
 private:
 
-    int total = 0;
+
 
 public:
     No* primeiro;
     LES g;
 
-    LDE(): primeiro(nullptr), total(0){
+    LDE(): primeiro(nullptr){
     }
 
     bool insere(string nome, int idade, int cpf, string endereco, string email, string contato, int duracao, int quarto, bool ativo,int tipo) {
@@ -66,6 +68,8 @@ public:
           anterior = atual;
           atual = atual->prox;
         }
+
+
 
         if (anterior)
           anterior->prox = novo;
@@ -115,15 +119,6 @@ public:
         filee.close();
     }
 
-    void imprime() {
-       No *atual = primeiro;
-       while (atual) {
-         cout << atual->c.nome << endl;
-         cout << atual->c.quarto << endl;
-         atual = atual->prox;
-        }
-    }
-
     void carregaLDE(){
         QString filename="clientes";
             QFile file(filename);
@@ -155,7 +150,7 @@ public:
        }
 
     void alteraCliente(string nome){
-        int quarto;
+        int quarto = 0;
         No *atual = primeiro;
         while (atual) {
             if(nome == atual->c.nome){

@@ -8,6 +8,8 @@
 #include <fstream>
 #include <QMessageBox>
 
+// LES, responsável pela gerência de quartos e disponibilidade deles no programa
+
 using namespace std;
 
 class LES {
@@ -68,7 +70,7 @@ public:
 
     void setQuartos(int quarto){
         for(int i= 0; i < MAX; i ++){
-            if(quarto == q[i].num){
+             if(quarto == q[i].num){
                 q[i].disp = true;
             }
         }

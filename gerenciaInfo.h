@@ -23,7 +23,6 @@ public:
         else{
             QTextStream stream(&file);
             QString senha = stream.readLine();
-            cout << senha.toStdString() << endl;
             senhaUser = senha;
         }
 
@@ -51,14 +50,13 @@ public:
                     QString senha = stream.readLine();
                     QString cargo = stream.readLine();
                     QString registro = stream.readLine();
-                    cout << nome.toStdString() << endl;
-                   /* if(loginUser == login && senhaUser == senha){
+                    if(loginUser == login && senhaUser == senha){
                         return true;
-                    }*/
+                    }
                 }
             }
           file.close();
-          return  true;
+          return false;
     }
 
     void cadastraFunc(QString nome, QString user, QString senha, QString cargo, QString registro){

@@ -15,6 +15,8 @@
 
 using namespace std;
 
+
+// Instanciando todas as classes
 LDE l;
 gerenciaInfo g;
 LES* h = new LES();
@@ -32,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     l.carregaLDE();
     h->carregaLES();
-    l.imprime();
 
     if(!(g.verificaSenha()))
         ui->stackedWidget->setCurrentIndex(4);
@@ -47,10 +48,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_btnLogin_clicked()
 {
-   /*if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
+   if(ui->txtUser->text() == "" || ui->txtSenha->text() == ""){
         ui->txtErro->setText("Login e/ou senha incorretos");
         return;
-    }*/
+    }
     if(g.verificaUsuario(ui->txtUser->text(),ui->txtSenha->text())){
           ui->stackedWidget->setCurrentIndex(2);
           ui->btnExit->setEnabled(true);
@@ -86,11 +87,22 @@ void MainWindow::on_btnExit_clicked()
         return;
     }
 
+    if(ui->stackedWidget->currentIndex() == 6){
+        ui->stackedWidget->setCurrentIndex(2);
+        return;
+    }
+
+    if(ui->stackedWidget->currentIndex() == 8){
+        ui->stackedWidget->setCurrentIndex(6);
+        return;
+    }
+
 
     ui->stackedWidget->setCurrentIndex(0);
 
     ui->txtUser->setText("");
     ui->txtSenha->setText("");
+    ui->txtErro->setText("");
 }
 
 void MainWindow::on_commandLinkButton_clicked()
@@ -98,8 +110,6 @@ void MainWindow::on_commandLinkButton_clicked()
 
     QString text = QInputDialog::getText(this, tr("Senha"),
                                              tr("Senha de gerencia: "), QLineEdit::Password);
-
-    //cout << g.senhaUser.toStdString() << endl;
 
     g.verificaSenha();
 
@@ -127,6 +137,8 @@ void MainWindow::on_btnAdd_clicked()
     ui->stackedWidget->setCurrentIndex(3);
 
     ui->comboBoxQuartos->clear();
+
+    // Carregando disponibilidade de quartos na LES
 
     h->carregaLES();
 
@@ -209,7 +221,7 @@ void MainWindow::on_btnSalvaReserva_clicked()
     ui->txtEnderecoCliente->setText("");
     ui->txtContatoCliente->setText("");
     ui->txtDuracao->setText("");
-    ui->buttonGroupTipos->checkedButton()->setCheckable(false);
+    ui->buttonGroupTipos->checkedButton()->setChecked(false);
 
 }
 
@@ -223,6 +235,8 @@ void MainWindow::on_btnClientes_clicked()
     ui->tableWidgetClientes->setRowCount(0);
 
     string tipo;
+
+    // Utilização da LES para listar as pessoas dentro dela
 
     No *atual = l.primeiro;
     while (atual) {
@@ -259,8 +273,38 @@ void MainWindow::on_btnCheckout_clicked()
     else{
         l.alteraCliente((ui->tableWidgetClientes->item(ui->tableWidgetClientes->currentRow(),ui->tableWidgetClientes->currentColumn())->text()).toStdString());
         ui->txtTeste->setText("Checkout realizado. Apenas clientes presentes no hotel sendo mostrados.");
-        on_btnClientes_clicked();
 
+        /*string temp = (ui->tableWidgetClientes->item(ui->tableWidgetClientes->currentRow(),ui->tableWidgetClientes->currentColumn())->text()).toStdString();
+        cout << temp << endl;
+
+        QString filename=QString::fromStdString(temp);
+            QFile filee(filename);
+            cout << "Cheguei aqui" << endl;
+            if (filee.open(QIODevice::ReadOnly | QIODevice::Text)){
+                QTextStream stream(&filee);
+                while (!stream.atEnd()){
+                    cout << "Estou lendo" << endl;
+                    QString nome = stream.readLine();
+                    QString idade = stream.readLine();
+                    QString cpf = stream.readLine();
+                    QString endereco = stream.readLine();
+                    QString email = stream.readLine();
+                    QString contato = stream.readLine();
+                    QString duracao = stream.readLine();
+                    QString quarto = stream.readLine();
+                    QString ativo = stream.readLine();
+                    QString tipo = stream.readLine();
+                    i.enfileira(nome.toStdString(), duracao.toInt(),tipo.toInt());
+                    cout << "Li" << endl;
+                }
+            cout << "Terminei" << endl;
+            filee.close();
+         }
+
+            cout << "OK" << endl;*/
+
+
+        on_btnClientes_clicked();
     }
 
     //cout << (ui->tableWidgetClientes->item(ui->tableWidgetClientes->currentRow(),ui->tableWidgetClientes->currentColumn())->text()).toStdString();
@@ -281,7 +325,10 @@ void MainWindow::on_btnCheckout_3_clicked()
     string tipo,presente;
 
     No *atual = l.primeiro;
+
     while (atual) {
+
+
         if(atual->c.tipo == 1){
             tipo = "Simples";
         }
@@ -312,6 +359,7 @@ void MainWindow::on_btnCheckout_3_clicked()
         ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,7,new QTableWidgetItem(QString::fromStdString(atual->c.contato)));
         ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,8,new QTableWidgetItem(QString::fromStdString(atual->c.endereco)));
         ui->tableWidgetTodos->setItem(ui->tableWidgetTodos->rowCount()-1,9,new QTableWidgetItem(QString::fromStdString(atual->c.email)));
+
         atual = atual->prox;
      }
 }
@@ -320,18 +368,28 @@ void MainWindow::on_btnCheckout_2_clicked()
 {
     ui->stackedWidget->setCurrentIndex(8);
 
-    No *atual = l.primeiro;
-
-    while(atual){
-        i.enfileira(atual->c.nome,atual->c.duracao,atual->c.tipo);
-        atual = atual->prox;
-    }
-
+    /*
     string tipo;
 
-    Ne *atuaal = i.primeiro;
-    {
-        while (i.desenfileira()){
+    Ne* atuaal = i.primeiro;
+
+    while(atuaal){
+         cout << atuaal->f.nome << endl;
+          cout << "Vou pro proximo" << endl;
+         atuaal = atuaal -> proximo;
+          cout << "Cheguei no proximo" << endl;
+    }
+*/
+
+
+
+
+
+
+
+    /*
+
+        while (atuaal){
 
             if(atuaal->f.tipoAcomodacao == 1){
                 tipo = "Simples";
@@ -348,10 +406,11 @@ void MainWindow::on_btnCheckout_2_clicked()
 
             ui->tableWidgetFinancas->insertRow(ui->tableWidgetFinancas->rowCount());
             ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,0,new QTableWidgetItem(QString::fromStdString(atuaal->f.nome)));
-            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,3,new QTableWidgetItem(QVariant(atuaal->f.dias).toString()));
-            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,4,new QTableWidgetItem(QString::fromStdString(tipo)));
-            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,4,new QTableWidgetItem(QVariant(atuaal->f.valor).toString()));
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,1,new QTableWidgetItem(QVariant(atuaal->f.dias).toString()));
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,2,new QTableWidgetItem(QString::fromStdString(tipo)));
+            ui->tableWidgetFinancas->setItem(ui->tableWidgetFinancas->rowCount()-1,3,new QTableWidgetItem(QVariant(atuaal->f.valor).toString()));
 
-        }
-    }
+            atuaal = atuaal->proximo;
+        }*/
+
 }

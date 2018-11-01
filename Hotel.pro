@@ -34,7 +34,6 @@ HEADERS += \
     les.h \
     lde.h \
     no.h \
-    rere.h \
     fila.h
 
 FORMS += \

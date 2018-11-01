@@ -24,8 +24,6 @@ public:
         this->f.tipoAcomodacao = tipoAcomodacao;
         this->f.valor = valor;
     }
-
-    friend class FDE;
 };
 
 class FDE {
