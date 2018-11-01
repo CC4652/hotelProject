@@ -114,9 +114,9 @@ Foram implementadas 3 estruturas sendo elas, *LES* (Lista Estática Sequencial),
 
 ## Autores
 
-* Victor Lima
-* Lucas Alves
-* Guilherme Ferreira
+* [Victor Lima](https://github.com/VictorLima1)
+* [Lucas Alves](https://github.com/PhreidL) 
+* [Guilherme Ferreira](https://github.com/gferreir)
 
 ## Licensa
 
